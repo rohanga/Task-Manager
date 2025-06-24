@@ -8,11 +8,34 @@ import { AddComponent } from './add/add.component';
 import { ListComponent } from './list/list.component';
 
 
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [ViewComponent, EditComponent, AddComponent, ListComponent],
   imports: [
     CommonModule,
-    TasksManagerRoutingModule
+    TasksManagerRoutingModule,
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatIconModule,
+
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
+    
   ]
 })
 export class TasksManagerModule { }
