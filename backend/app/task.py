@@ -13,6 +13,10 @@ from .models import Task
 router = APIRouter()
 
 def connect_db():
+    """Here we use a generator function to connect to the database.
+    This function creates a new database session and yields it for use in the request.
+    It ensures that the session is closed after the request is completed.
+    """
     db = SessionLocal()
     try:
         yield db
