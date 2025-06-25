@@ -1,6 +1,8 @@
 # 📝 Task Manager
-Demo(Frontend): https://task-manager-ejbm.onrender.com/
-Swagger(backend): https://bookshelf-backend-my1t.onrender.com/docs
+
+**Demo (Frontend)**: https://task-manager-ejbm.onrender.com/  
+**Swagger (Backend)**: https://task-manager-backend-fijx.onrender.com/docs
+
 
 Note: Application deployed on fee web server so first time it may take time to load on your machine 
 
