@@ -22,13 +22,13 @@
 //       status: ['']
 //     });
 //   }
-  
+
 //   ngOnInit(): void {
 //     this.form.patchValue(this.data);
 //   }
 
 //   updateTask() {
-    
+
 //     if (this.form.valid) {
 //       // this.taskService.updateTask(this.data.id, this.form.value).subscribe(() => {
 //         this.dialogRef.close(true);
@@ -41,7 +41,7 @@
 // }
 
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 // import { TaskService } from '../task.service';
 // import { Task } from '../models/task.model';
@@ -61,20 +61,25 @@ export class EditComponent {
     // private taskService: TaskService
   ) {
     this.form = this.fb.group({
-      title: [data.title],
-      description: [data.description],
-      status: [data.status]
+      title: [data.title, Validators.required],
+      description: [data.description, Validators.required],
+      status: [data.status, Validators.required]
     });
   }
 
   updateTask() {
-    const updatedData = {
-      id: this.data.id, // include task ID in payload
-      ...this.form.value
-    };
+    if (this.form.valid) {
 
-    // this.taskService.updateTask(updatedData.id, updatedData).subscribe(() => {
+      const updatedData = {
+        id: this.data.id, // include task ID in payload
+        ...this.form.value
+      };
+
+      // this.taskService.updateTask(updatedData.id, updatedData).subscribe(() => {
       this.dialogRef.close(updatedData); // close popup and notify parent
-    // });
+      // });
+    } else {
+      console.log('Form is invalid');
+    }
   }
 }

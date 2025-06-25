@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import  {AddComponent} from '../add/add.component';
 import { EditComponent } from '../edit/edit.component';
+import { ConfirmComponent } from '../confirm/confirm.component';
 import {MatDialog} from '@angular/material/dialog';
 @Component({
   selector: 'app-list',
@@ -74,5 +75,24 @@ dataSource= [
       // You can handle the result here if needed
     });
   }
-  
+  confirmDelete(task: any) {
+  const dialogRef = this.dialog.open(ConfirmComponent, {
+    width: '350px',
+    data: { id: task.id } // send task id to dialog
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.deleteTask(result); // result will be the taskId
+    }
+  });
+}
+
+deleteTask(taskId: string) {
+  console.log('Deleting task with ID:', taskId);
+  // this.taskService.deleteTask(taskId).subscribe(() => {
+  //   this.loadTasks(); // refresh list
+  // });
+}
+
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add',
@@ -14,9 +15,9 @@ export class AddComponent implements OnInit {
 
   ) {
     this.form = this.fb.group({
-      title: [''],
-      status: [''],
-      desc: ['']
+      title: ['', Validators.required],
+  status: ['', Validators.required],
+  desc: ['', Validators.required]
     });
   }
 

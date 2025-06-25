@@ -18,8 +18,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmComponent } from './confirm/confirm.component';
 @NgModule({
-  declarations: [ViewComponent, EditComponent, AddComponent, ListComponent],
+  declarations: [ViewComponent, EditComponent, AddComponent, ListComponent, ConfirmComponent],
   imports: [
     CommonModule,
     TasksManagerRoutingModule,

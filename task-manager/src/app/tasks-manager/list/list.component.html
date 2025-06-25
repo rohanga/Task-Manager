@@ -1,5 +1,6 @@
-<div class="task-list-container">
 
+<div class="task-list-container">
+    <h1>Task Manager</h1>
   <!-- Add Task Button -->
   <div class="add-button">
     <button mat-raised-button color="primary" (click)="addTask()">
@@ -45,7 +46,7 @@
         <button mat-icon-button color="primary" (click)="editTask(row)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" >
+        <button mat-icon-button color="warn"  (click)="confirmDelete(row)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
