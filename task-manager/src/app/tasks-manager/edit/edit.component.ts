@@ -43,6 +43,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TaskServiceService } from '../../providers/task-service.service';
 // import { TaskService } from '../task.service';
 // import { Task } from '../models/task.model';
 
@@ -58,7 +59,7 @@ export class EditComponent {
     @Inject(MAT_DIALOG_DATA) public data: any, // inject data passed from parent    
     public dialogRef: MatDialogRef<EditComponent>,
     private fb: FormBuilder,
-    // private taskService: TaskService
+    private readonly taskService: TaskServiceService
   ) {
     this.form = this.fb.group({
       title: [data.title, Validators.required],
@@ -67,7 +68,7 @@ export class EditComponent {
     });
   }
 
-  updateTask() {
+  async updateTask() {
     if (this.form.valid) {
 
       const updatedData = {
@@ -75,8 +76,8 @@ export class EditComponent {
         ...this.form.value
       };
 
-      // this.taskService.updateTask(updatedData.id, updatedData).subscribe(() => {
-      this.dialogRef.close(updatedData); // close popup and notify parent
+     let response_data= await this.taskService.applyTaskChanges(updatedData)
+      this.dialogRef.close(response_data); // close popup and notify parent
       // });
     } else {
       console.log('Form is invalid');

@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 })
 export class TaskServiceService {
 
-  private readonly API_BASE_URL: string = `${environment.apiurl}/app`;
+  private readonly API_BASE_URL: string = `${environment.apiurl}`;
 
   private readonly headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -19,25 +19,29 @@ export class TaskServiceService {
 
   tasks():Promise<any> {
     const url= `${this.API_BASE_URL}/tasks`;
+    console.log('Fetching tasks from:', url);
     return this.http.get<any>(url, { headers: this.headers }).toPromise();
   }
 
   newTask(payload: any) {
-    const url= `${this.API_BASE_URL}/tasks`;
+    const url= `${this.API_BASE_URL}/task`;
+    console.log('Creating new task at:', url,payload);
     return this.http.post<any>(url, payload, {
       headers: this.headers
     }).toPromise()
   }
 
   applyTaskChanges(payload: any) {
-    const url= `${this.API_BASE_URL}/tasks`;
+    const url= `${this.API_BASE_URL}/task/${payload.id}`;
+    console.log('Updating task at:', url,payload);
     return this.http.put<any>(url, payload, {
       headers: this.headers
     }).toPromise()
   }
 
   removeTask(taskId: string) {
-     const url= `${this.API_BASE_URL}/tasks/${taskId}`;
+     const url= `${this.API_BASE_URL}/task/${taskId}`;
+    console.log('Removing task at:', url);
     return this.http.delete<any>(url, {
       headers: this.headers
     }).toPromise()

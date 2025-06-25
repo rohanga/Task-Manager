@@ -1,11 +1,10 @@
+import uuid
 from datetime import datetime
 from fastapi import APIRouter, HTTPException,Depends
-from .models import Task
-from . import schema
-from typing import List
-import uuid
 from sqlalchemy.orm import Session
+from . import schema
 from .database import SessionLocal
+from .models import Task
 
 router = APIRouter()
 
@@ -16,13 +15,16 @@ def connect_db():
     finally:
         db.close()
 
-@router.get("")
+@router.get("/tasks")
 def get_tasks(db: Session = Depends(connect_db)):
+    print("Fetching all tasks")
     return db.query(Task).all()
 
 
-@router.post("/add")
+@router.post("/task")
 def create_task(task_data: schema.TaskCreate,db: Session = Depends(connect_db) ):
+    print("Creating a new task:", task_data)
+
     new_task = Task(
         id=str(uuid.uuid4()),
         title=task_data.title,
@@ -37,20 +39,20 @@ def create_task(task_data: schema.TaskCreate,db: Session = Depends(connect_db) )
     return new_task
 
 
-@router.put("/update/{task_id}")
+@router.put("/task/{task_id}")
 def update_task( task_id: str, updated_task: schema.TaskUpdate,db: Session = Depends(connect_db)):
     task = db.query(Task).filter(Task.id == task_id).first()
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")   
     
-    for index, task in  updated_task.dict().items():
-        setattr(task, index, task[index])
+    for field, value in  updated_task.dict().items():
+        setattr(task, field, value)
     db.commit()
     db.refresh(task)
     return task
 
 
-@router.delete("/remove/{task_id}")
+@router.delete("/task/{task_id}")
 def delete_task( task_id: str,db: Session = Depends(connect_db)):
     db_task = db.query(Task).filter(Task.id == task_id).first()
     if not db_task:

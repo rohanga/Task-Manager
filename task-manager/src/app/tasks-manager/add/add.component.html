@@ -4,6 +4,12 @@
     <input matInput formControlName="title">
   </mat-form-field>
 
+
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="desc"></textarea>
+  </mat-form-field>
   <mat-form-field>
     <mat-label>Status</mat-label>
     <mat-select formControlName="status">
@@ -11,11 +17,5 @@
       <mat-option value="completed">Completed</mat-option>
     </mat-select>
   </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Description</mat-label>
-    <textarea matInput formControlName="desc"></textarea>
-  </mat-form-field>
-
   <button mat-raised-button color="primary" type="submit">Submit</button>
 </form>
