@@ -21,11 +21,12 @@ export class ListComponent implements OnInit {
     this.loadTasks();
   }
   async loadTasks() {
- 
+    setTimeout(async() => {
     const data = await this.taskService.tasks();
     console.log('Tasks loaded:', data);
     this.dataSource = data;
     this.isLoading = false;
+    }, 1000);
   }
   addTask() {
     const dialogRef = this.dialog.open(AddComponent, {
@@ -63,7 +64,7 @@ export class ListComponent implements OnInit {
       if (result) {
         this.isLoading = true;
         this.deleteTask(result); // result will be the taskId
-        this.loadTasks();
+      
       }
     });
   }

@@ -4,7 +4,7 @@
 **Swagger (Backend)**: https://task-manager-backend-fijx.onrender.com/docs
 
 
-Note: Application deployed on fee web server so first time it may take time to load on your machine 
+Note: Application deployed on free web server so first time it may take time to load on your machine 
 
 A full-stack Task Management web application built with:
 
@@ -32,7 +32,7 @@ A full-stack Task Management web application built with:
 - [Node.js (LTS)](https://nodejs.org/) – Recommended: v16
 - [PostgreSQL](https://www.postgresql.org/)
 - [Angular CLI](https://angular.io/cli) – `npm install -g @angular/cli`
-- (Optional) [Virtualenv](https://pypi.org/project/virtualenv/)
+- [Virtualenv](https://pypi.org/project/virtualenv/)
 
 ---
 
@@ -81,5 +81,5 @@ ng build --configuration production
 
 ```
 #### e. Deployment (Render)
- Backend and Frontend project deployed on online free platform Render
+ Backend , Frontend  and Datbase project deployed on online free platform Render
 

@@ -25,11 +25,7 @@ table {
   color: #333;
 }
 
-.mat-cell, .mat-header-cell {
-  padding: 12px;
-  text-align: left;
-  font-size: 14px;
-}
+
 
 .mat-row:hover {
   background-color: #f9f9f9;
@@ -62,4 +58,19 @@ table {
   justify-content: center;
   align-items: center;
   height: 700px;
+}
+table.mat-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.mat-header-cell, .mat-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-column-title,
+.mat-column-description {
+  max-width: 200px; /* adjust as needed */
 }

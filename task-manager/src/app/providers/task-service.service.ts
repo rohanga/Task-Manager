@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import{HttpClient,HttpHeaders} from '@angular/common/http'
 import { environment } from '../../environments/environment';
-
+import { CreateTask,Task } from './task.model';
 @Injectable({
   providedIn: 'root'
 })
-export class TaskServiceService {
 
+export class TaskServiceService {
+  
   private readonly API_BASE_URL: string = `${environment.apiurl}`;
 
   private readonly headers = new HttpHeaders({
@@ -23,7 +24,7 @@ export class TaskServiceService {
     return this.http.get<any>(url, { headers: this.headers }).toPromise();
   }
 
-  newTask(payload: any) {
+  newTask(payload: CreateTask): Promise<any> {
     const url= `${this.API_BASE_URL}/task`;
     console.log('Creating new task at:', url,payload);
     return this.http.post<any>(url, payload, {
@@ -31,7 +32,7 @@ export class TaskServiceService {
     }).toPromise()
   }
 
-  applyTaskChanges(payload: any) {
+  applyTaskChanges(payload: Task): Promise<any> {
     const url= `${this.API_BASE_URL}/task/${payload.id}`;
     console.log('Updating task at:', url,payload);
     return this.http.put<any>(url, payload, {
@@ -39,7 +40,7 @@ export class TaskServiceService {
     }).toPromise()
   }
 
-  removeTask(taskId: string) {
+  removeTask(taskId: string): Promise<any> {
      const url= `${this.API_BASE_URL}/task/${taskId}`;
     console.log('Removing task at:', url);
     return this.http.delete<any>(url, {

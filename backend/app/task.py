@@ -1,3 +1,7 @@
+"""
+In this file we define the task router for handling CRUD operations on tasks.
+It includes endpoints for creating, reading, updating, and deleting tasks.
+"""
 import uuid
 from datetime import datetime
 from fastapi import APIRouter, HTTPException,Depends

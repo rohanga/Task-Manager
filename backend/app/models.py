@@ -1,8 +1,11 @@
-from sqlalchemy import Column, String, DateTime,Enum
-
-from .database import Base
+"""Task Manager Backend - SQLAlchemy Models
+This module defines the SQLAlchemy models for the Task Manager application.
+It includes the Task model with fields for task attributes and status.
+"""
 from datetime import datetime
 import enum
+from sqlalchemy import Column, String, DateTime,Enum
+from .database import Base
 
 class TaskStatus(enum.Enum):
     pending = "pending"

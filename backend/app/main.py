@@ -1,3 +1,6 @@
+"""In this file we create a FastAPI app and include the task router.
+We also set up CORS middleware to allow requests from specific origins.
+"""
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base

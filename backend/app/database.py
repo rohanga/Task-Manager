@@ -1,3 +1,6 @@
+"""In this file we coonect postgres databases with our fast api app.
+We use SQLAlchemy to connect to the database and create a session.
+"""
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
