@@ -6,7 +6,7 @@ from . import task
 app = FastAPI(  title="Task Manager API",
     description="An API to manage tasks (CRUD)",
     version="1.0.0")
-origins = ["http://localhost:4200"]
+origins = ["http://localhost:4200","https://task-manager-ejbm.onrender.com"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
