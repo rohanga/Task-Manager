@@ -3,13 +3,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base
 from . import task
 
-app = FastAPI(  title="Task Manager API",
-    description="An API to manage tasks (CRUD)",
-    version="1.0.0")
+app = FastAPI(  
+              title="Task Manager API",
+              description="An API to manage tasks (CRUD)",
+              docs_url="/docs",         # Swagger UI
+
+              version="1.0.0")
 origins = ["http://localhost:4200","https://task-manager-ejbm.onrender.com"]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

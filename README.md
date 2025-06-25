@@ -1,4 +1,8 @@
 # 📝 Task Manager
+Demo(Frontend): https://task-manager-ejbm.onrender.com/
+Swagger(backend): https://bookshelf-backend-my1t.onrender.com/docs
+
+Note: Application deployed on fee web server so first time it may take time to load on your machine 
 
 A full-stack Task Management web application built with:
 
@@ -59,12 +63,12 @@ ng serve
 ```
 #### c. API Endpoints
 
-| Method | Endpoint             | Description    |
-| ------ | -------------------- | -------------- |
-| GET    | `/tasks`             | Get all tasks  |
-| POST   | `/tasks/add`         | Add a new task |
-| PUT    | `/tasks/update/{id}` | Update a task  |
-| DELETE | `/tasks/remove/{id}` | Delete a task  |
+| Method | Endpoint          | Description    |
+| ------ | ----------------- | -------------- |
+| GET    | `/tasks`          | Get all tasks  |
+| POST   | `/task`           | Add a new task |
+| PUT    | `/task/{task_id}` | Update a task  |
+| DELETE | `/task/{task_id}` | Delete a task  |
 
 
 #### d. Build Production
