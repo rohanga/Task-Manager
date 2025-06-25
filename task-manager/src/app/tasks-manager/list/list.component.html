@@ -1,5 +1,5 @@
 
-<div class="task-list-container">
+<div *ngIf="!isLoading" class="task-list-container">
     <h1>Task Manager</h1>
   <!-- Add Task Button -->
   <div class="add-button">
@@ -62,4 +62,8 @@
     No tasks found.
   </div>
 
+</div>
+
+<div class="spnnier-container" >
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
 </div>

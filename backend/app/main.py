@@ -3,7 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base
 from . import task
 
-app = FastAPI()
+app = FastAPI(  title="Task Manager API",
+    description="An API to manage tasks (CRUD)",
+    version="1.0.0")
 origins = ["http://localhost:4200"]
 app.add_middleware(
     CORSMiddleware,

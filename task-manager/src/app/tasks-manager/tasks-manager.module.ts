@@ -19,6 +19,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmComponent } from './confirm/confirm.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [ViewComponent, EditComponent, AddComponent, ListComponent, ConfirmComponent],
   imports: [
@@ -32,7 +33,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
     ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
-
+    MatProgressSpinnerModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule
