@@ -1,14 +1,16 @@
-name: FastAPI CI/CD
+name: FastAPI Backend CI/CD
 
 on:
   push:
+    paths:
+      - 'backend/**'
     branches:
       - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    environment: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -25,9 +27,12 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
+          context: ./backend    # 👈 sets Docker build context to backend folder
+          file: ./backend/Dockerfile  # 👈 use Dockerfile inside backend
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/my-fastapi-app:latest
 
+      # Uncomment if you want to deploy via SSH
       # - name: SSH Deploy to server
       #   uses: appleboy/ssh-action@v1.0.0
       #   with:
