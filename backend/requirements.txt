@@ -16,3 +16,5 @@ typing-inspection==0.4.1
 typing_extensions==4.14.0
 uvicorn==0.34.3
 alembic==1.16.4
+kafka-python==2.2.15
+aiokafka==0.12.0

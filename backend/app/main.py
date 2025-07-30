@@ -1,12 +1,19 @@
 """In this file we create a FastAPI app and include the task router.
 We also set up CORS middleware to allow requests from specific origins.
 """
-from fastapi import FastAPI, Depends,Request
+from fastapi import FastAPI, Depends,Request,WebSocket,WebSocketDisconnect
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base
 from . import task
+from kafka import KafkaProducer
+from .kafka_producer import start_producer, stop_producer
+import asyncio
+from .kafka_consumer import consume
+from .web_soc_manager import manager
+
+
 
 app = FastAPI(  
               title="Task Manager API",
@@ -14,6 +21,32 @@ app = FastAPI(
               docs_url="/docs",
 
               version="1.0.0")
+
+
+
+producer = KafkaProducer(
+    bootstrap_servers='localhost:9092'
+)
+
+@app.on_event("startup")
+async def startup_event():
+    await start_producer()
+    asyncio.create_task(consume())
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    await stop_producer()
+
+
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await manager.connect(websocket)
+    try:
+        while True:
+            await websocket.receive_text()  # Optional
+    except WebSocketDisconnect:
+        manager.disconnect(websocket)
+
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request:Request, exc: RequestValidationError):

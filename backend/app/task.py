@@ -4,11 +4,14 @@ It includes endpoints for creating, reading, updating, and deleting tasks.
 """
 import uuid
 from datetime import datetime
-from fastapi import APIRouter, HTTPException,Depends
+from fastapi import APIRouter, HTTPException,Depends,WebSocket
 from sqlalchemy.orm import Session
 from . import schema
 from .database import SessionLocal
 from .models import Task
+
+from .kafka_producer import  send_task_event
+from .web_soc_manager import manager
 
 router = APIRouter()
 
@@ -23,14 +26,17 @@ def connect_db():
     finally:
         db.close()
 
+
+
 @router.get("/tasks")
 def get_tasks(db: Session = Depends(connect_db)):
     print("Fetching all tasks")
     return db.query(Task).all()
 
 
+
 @router.post("/task")
-def create_task(task_data: schema.TaskCreate,db: Session = Depends(connect_db) ):
+async def create_task(task_data: schema.TaskCreate,db: Session = Depends(connect_db) ):
     print("Creating a new task:", task_data)
 
     new_task = Task(
@@ -43,7 +49,10 @@ def create_task(task_data: schema.TaskCreate,db: Session = Depends(connect_db) )
     db.add(new_task)
     db.commit()
     db.refresh(new_task)
-
+    event = {
+        "type": "task_created"
+    }
+    await send_task_event(event)
     return new_task
 
 
