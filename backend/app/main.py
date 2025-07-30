@@ -24,28 +24,28 @@ app = FastAPI(
 
 
 
-producer = KafkaProducer(
-    bootstrap_servers='localhost:9092'
-)
+# producer = KafkaProducer(
+#     bootstrap_servers='localhost:9092'
+# )
 
-@app.on_event("startup")
-async def startup_event():
-    await start_producer()
-    asyncio.create_task(consume())
+# @app.on_event("startup")
+# async def startup_event():
+#     await start_producer()
+#     asyncio.create_task(consume())
 
-@app.on_event("shutdown")
-async def shutdown_event():
-    await stop_producer()
+# @app.on_event("shutdown")
+# async def shutdown_event():
+#     await stop_producer()
 
 
-@app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket):
-    await manager.connect(websocket)
-    try:
-        while True:
-            await websocket.receive_text()  # Optional
-    except WebSocketDisconnect:
-        manager.disconnect(websocket)
+# @app.websocket("/ws")
+# async def websocket_endpoint(websocket: WebSocket):
+#     await manager.connect(websocket)
+#     try:
+#         while True:
+#             await websocket.receive_text()  # Optional
+#     except WebSocketDisconnect:
+#         manager.disconnect(websocket)
 
 
 @app.exception_handler(RequestValidationError)
