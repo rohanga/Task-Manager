@@ -8,10 +8,10 @@ import { NotificationService } from './providers/notification.service';
 export class AppComponent implements OnInit, OnDestroy { 
   constructor(private notifService: NotificationService) {}
     ngOnInit() {
-    this.notifService.connect();
+    // this.notifService.connect();
   }
   ngOnDestroy() {
-    this.notifService.close();
+    // this.notifService.close();
   }
 
   

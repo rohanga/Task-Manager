@@ -34,28 +34,25 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/my-fastapi-app:latest
 
-      - name: Install Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
+      # - name: Install Docker Compose
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y docker-compose
 
-      - name: Update docker-compose.yml to use pushed image
-        run: |
-          sed -i 's|build: ./backend|image: ${{ secrets.DOCKER_USERNAME }}/my-fastapi-app:latest|' backend/docker-compose.yml
+      # - name: Update docker-compose.yml to use pushed image
+      #   run: |
+      #     sed -i 's|build: ./backend|image: ${{ secrets.DOCKER_USERNAME }}/my-fastapi-app:latest|' backend/docker-compose.yml
 
-      - name: Run Docker Compose stack
-        working-directory: backend
-        run: |
-          docker-compose up -d
-          sleep 20  # wait for services to be ready
-          docker-compose ps
+      # - name: Run Docker Compose stack
+      #   working-directory: backend
+      #   run: |
+      #     docker-compose up -d
+      #     sleep 20  # wait for services to be ready
+      #     docker-compose ps
 
       # - name: Run tests inside backend container
       #   working-directory: backend
       #   run: |
       #     docker-compose exec backend pytest
 
-      - name: Shutdown Docker Compose
-        working-directory: backend
-        run: |
-          docker-compose down
+

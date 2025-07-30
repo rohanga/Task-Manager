@@ -49,10 +49,10 @@ async def create_task(task_data: schema.TaskCreate,db: Session = Depends(connect
     db.add(new_task)
     db.commit()
     db.refresh(new_task)
-    event = {
-        "type": "task_created"
-    }
-    await send_task_event(event)
+    # event = {
+    #     "type": "task_created"
+    # }
+    # await send_task_event(event)
     return new_task
 
 
