@@ -16,3 +16,4 @@ async def consume():
             await manager.broadcast(json.dumps(event))
     finally:
         await consumer.stop()
+ 
