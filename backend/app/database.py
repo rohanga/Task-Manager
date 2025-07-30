@@ -11,3 +11,4 @@ DATABASE_URL="postgresql://postgres:Rohan$1234@taskmanager.cjs8p2p9gdau.ap-south
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+  
