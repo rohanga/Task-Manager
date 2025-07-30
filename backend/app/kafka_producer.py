@@ -20,3 +20,4 @@ async def send_task_event(event: dict):
         "task-events",
         json.dumps(event).encode("utf-8")
     )
+ 
