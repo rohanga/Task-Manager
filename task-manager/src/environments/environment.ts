@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // apiurl: 'https://task-manager-backend-fijx.onrender.com',
-  apiurl: 'http://localhost:8000',
+  apiurl: 'https://my-fastapi-app-1v32.onrender.com',
+  // apiurl: 'http://localhost:8000',
 
   token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30'
 };
