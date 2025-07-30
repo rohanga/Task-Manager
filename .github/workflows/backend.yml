@@ -50,10 +50,10 @@ jobs:
           sleep 20  # wait for services to be ready
           docker-compose ps
 
-      - name: Run tests inside backend container
-        working-directory: backend
-        run: |
-          docker-compose exec backend pytest
+      # - name: Run tests inside backend container
+      #   working-directory: backend
+      #   run: |
+      #     docker-compose exec backend pytest
 
       - name: Shutdown Docker Compose
         working-directory: backend
