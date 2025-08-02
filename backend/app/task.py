@@ -49,15 +49,15 @@ async def create_task(task_data: schema.TaskCreate,db: Session = Depends(connect
     db.add(new_task)
     db.commit()
     db.refresh(new_task)
-    # event = {
-    #     "type": "task_created"
-    # }
-    # await send_task_event(event)
+    event = {
+        "type": "task_created"
+    }
+    await send_task_event(event)
     return new_task
 
 
 @router.put("/task/{task_id}")
-def update_task( task_id: str, updated_task: schema.TaskUpdate,db: Session = Depends(connect_db)):
+async def update_task( task_id: str, updated_task: schema.TaskUpdate,db: Session = Depends(connect_db)):
     task = db.query(Task).filter(Task.id == task_id).first()
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")   
@@ -66,16 +66,24 @@ def update_task( task_id: str, updated_task: schema.TaskUpdate,db: Session = Dep
         setattr(task, field, value)
     db.commit()
     db.refresh(task)
+    event = {
+        "type": "task_updated"
+    }
+    await send_task_event(event)
     return task
 
 
 @router.delete("/task/{task_id}")
-def delete_task( task_id: str,db: Session = Depends(connect_db)):
+async def delete_task( task_id: str,db: Session = Depends(connect_db)):
     db_task = db.query(Task).filter(Task.id == task_id).first()
     if not db_task:
         raise HTTPException(status_code=404, detail="Task not found")
     if db_task:
         db.delete(db_task)
         db.commit()
+        event = {
+        "type": "task_deleted"
+        }
+        await send_task_event(event)
         return {"message": "Task deleted successfully"} 
    

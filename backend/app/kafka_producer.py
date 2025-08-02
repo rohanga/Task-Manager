@@ -8,7 +8,7 @@ producer = None
 async def start_producer():
     global producer
     producer = AIOKafkaProducer(
-        bootstrap_servers="localhost:9092"
+        bootstrap_servers="3.27.197.180:9092"
     )
     await producer.start()
 

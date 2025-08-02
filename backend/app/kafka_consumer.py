@@ -6,7 +6,7 @@ from .web_soc_manager import manager
 async def consume():
     consumer = AIOKafkaConsumer(
         "task-events",
-        bootstrap_servers="localhost:9092",
+        bootstrap_servers="3.27.197.180:9092",
         group_id="task-group"
     )
     await consumer.start()
