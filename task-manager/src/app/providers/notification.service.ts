@@ -9,7 +9,7 @@ export class NotificationService {
   constructor(private snackBar: MatSnackBar) {}
 
   connect() {
-    this.ws = new WebSocket('ws://localhost:8000/ws');
+    this.ws = new WebSocket('ws://my-fastapi-app-1v32.onrender.com/ws');
     this.ws.onmessage = (event) => {
       const msg = JSON.parse(event.data);
       console.log('Notification:', msg);
