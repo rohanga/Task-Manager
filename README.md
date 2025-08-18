@@ -83,3 +83,51 @@ ng build --configuration production
 #### e. Deployment (Render)
  Backend , Frontend  and Datbase project deployed on online free platform Render
 
+
+#### f. Class Diagram of Angular  
+
+
+```mermaid
+classDiagram
+    class ListComponent {
+        - displayedColumns: string[]
+        - isLoading: boolean
+        - dataSource: any[]
+        + ngOnInit(): void
+        + loadTasks(): Promise<void>
+        + addTask(): void
+        + editTask(task): void
+        + confirmDelete(task): void
+        + deleteTask(taskId: string): Promise<void>
+    }
+
+    class AddComponent {
+        - form: FormGroup
+        + ngOnInit(): void
+        + onSubmit(): Promise<void>
+    }
+
+    class EditComponent {
+        - form: FormGroup
+        + ngOnInit(): void
+        + onSubmit(): Promise<void>
+    }
+
+    class ConfirmComponent {
+        + onNoClick(): void
+        + onYesClick(): void
+    }
+
+    class TaskServiceService {
+        + tasks(): Promise<any[]>
+        + newTask(data: any): Promise<any>
+        + updateTask(id: string, data: any): Promise<any>
+        + removeTask(id: string): Promise<any>
+    }
+
+    ListComponent --> AddComponent
+    ListComponent --> EditComponent
+    ListComponent --> ConfirmComponent
+    ListComponent --> TaskServiceService
+    AddComponent --> TaskServiceService
+    EditComponent --> TaskServiceService```
